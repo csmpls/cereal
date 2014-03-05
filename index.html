@@ -20,15 +20,16 @@
 	<body>
 		<div class="reveal">
 		    <div class="slides">
-		        <section>Single Horizontal Slide</section>
-		        <section>
-				yes
-		        </section>
+		        <section>hello</section>
+		        <section> yes </section>
+		        <section> nice </section>
+		        <section> v nice </section>
 		    </div>
 		</div>
 		
 		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/keyboard.js"></script>
 
 		<script>
 
@@ -39,17 +40,33 @@
 				progress: true,
 				history: false,
 				center: true,
+				autoSlide: 5000,
+				keyboard: false,
+				//loop: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-				// Parallax scrolling
-				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
-
-				// Optional libraries used to extend on reveal.js
-				
 			});
+
+			// our lists
+			var interested = []
+			var not_interested = []
+
+			// set keyboard shortcuts
+			KeyboardJS.on('a', function() { addToList(interested) }, null)		
+			KeyboardJS.on('b', function() { addToList(not_interested) }, null)		
+
+			
+			function addToList(list) {
+				
+				var slide_content = Reveal.getCurrentSlide()
+				list.push(slide_content)
+				
+				if (!Reveal.isLastSlide()) {
+					Reveal.next()
+				}
+			}
+
 
 		</script>
 </body>
